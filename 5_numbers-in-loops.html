@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    // Задание 1
+    /* Выведите n первых членов последовательности Фибоначчи, где каждый следующий член равен сумме двух предыдущих: 1, 1, 2, 3, 5, 8, 13 */
+
+    const n = 6;
+
+    let a = 1;
+    let b = 1;
+
+    let line = '';
+
+    if (n === 1) {
+      line = `${a}`;
+    } else {
+      line = `${a}, ${b}`;
+    }
+
+    for (let i = 0; i < (n - 2); i++) {
+      if (i % 2 === 0) {
+        a += b;
+        line += `, ${a}`;
+      } else {
+        b += a;
+        line += `, ${b}`;
+      }
+    }
+
+    console.log(line);
+
+
+    // Задание 2
+    /* Выведите первые члены последовательности Фибоначчи, которые не превышают числа x. x = 22: 1, 1, 2, 3, 5, 8, 13, 21  */
+
+    const num = 10;
+
+    let x = 1;
+    let y = 1;
+
+
+    for (let i = 0; i < num; i++) {
+      console.log(x);
+
+      y = y + x;
+      x = y - x;
+    }
+  </script>
+</body>
+
+</html>

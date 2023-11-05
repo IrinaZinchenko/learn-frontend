@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    // Задание 1 (аналог метода forEach)
+    /* Напишите функцию forEach, которая будет первым параметром принимать массив, вторым - callback-функцию,
+    которая будет применяться к каждому элементу и индексу элемента массива по очереди.
+
+    Передайте в созданную функцию forEach любой массив, а в качестве callback-функции - функцию, 
+    которая будет выводит в консоль полученные аргументы с текстом “Элемент … с индексом …”, 
+    где первые … - это элемент массива, вторые … - это индекс элемента массива. */
+
+    function forEachTwin(array, callback) {
+      for (let i = 0; i < array.length; i++) {
+        let item = array[i];
+        let number = i;
+        callback(item, number);
+      }
+    }
+
+    function showItem(element, index) {
+      console.log(`Элемент ${element} с индексом ${index}`);
+    }
+
+    forEachTwin(['кошка', 'собака', 'попугай'], showItem);
+
+
+    // Задание 2
+    /* Используйте функцию forEach из предыдущей задачи. Напишите callback-функцию, которая будет для каждого элемента числового массива 
+    рассчитывать сумму элемента с его индексом и выводить в консоль. Callback-функцию можно создавать стрелочным способом. */
+
+    let arr = [10, 8, 6, 4, 2, 0];
+
+    function getSum(element, index) {
+      let sum = element + index;
+      console.log(`${element} + ${index} = ${sum}`);
+    }
+
+    forEachTwin(arr, getSum);
+
+    // стрелочным способом
+
+    forEachTwin(arr, (element, index) => console.log(`${element} + ${index} = ${element + index}`));
+
+
+    // Задание 3 (аналог метода map)
+    /* Напишите функцию `map`, которая будет первым параметром принимать массив, вторым - callback-функцию,
+    которая будет применяться к каждому элементу и индексу элемента массива по очереди. `map` должна возвращать новый массив.
+
+    Передайте в созданную функцию `map` числовой массив, а в качестве callback-функции - функцию, которая будет высчитывать 
+    квадрат каждого элемента и добавлять его в новый массив. Callback-функцию можно создавать стрелочным способом. */
+
+    function mapTwin(array, callback) {
+      let resultArray = [];
+
+      for (let i = 0; i < array.length; i++) {
+        resultArray[i] = callback(array[i]);
+      }
+
+      return resultArray;
+    }
+
+    function getSquare(element) {
+      let square = element ** 2;
+      return square;
+    }
+
+    console.log(mapTwin(arr, getSquare))
+
+    // стрелочный способ
+
+    console.log(mapTwin(arr, element => element ** 2))
+
+
+    // Задание 4
+    /* Используйте функцию map из предыдущей задачи. Функция map будет принимать числовой массив, который состоит только из 1 и 0
+    в случайном порядке. Напишите callback-функцию, которая будет инвертировать элемент предыдущего массива и записывать его в новый. 
+    Callback-функцию можно создавать стрелочным способом. */
+
+    const binaryArray = [0, 0, 1, 1, 0, 1, 0, 0, 0, 1];
+
+    function reverseArray(element) {
+      let oppositeNumber = 1;
+
+      if (element === 1) {
+        oppositeNumber = 0;
+      }
+
+      return oppositeNumber;
+    }
+
+    console.log(mapTwin(binaryArray, reverseArray));
+
+
+    // Задание 5 (аналог метода filter)
+    /* Напишите функцию `filter`, которая будет первым параметром принимать массив, вторым - callback-функцию,
+    которая будет применяться к каждому элементу и индексу элемента массива по очереди. `filter` должна возвращать новый 
+    отфильтрованный массив по условиям, описанных в callback-функции, иначе возвращает пустой массив `[]`.
+
+    Передайте в созданную функцию `filter` числовой массив, а в качестве callback-функции - функцию, которая будет 
+    проверять элемент на чётность. Если элемент чётный, добавляем в новый массив, иначе игнорируем элемент. Callback-функцию можно 
+    создавать стрелочным способом. */
+
+    function filterTwin(array, callback) {
+      let newArray = [];
+      let count = 0;
+
+      for (let i = 0; i < array.length; i++) {
+        if (callback(array[i]) === undefined) {
+          continue
+        } else {
+          newArray[count] = callback(array[i]);
+          count++;
+        }
+      }
+
+      return newArray;
+    }
+
+    function isEven(element) {
+      if (element % 2 === 0) {
+        let num = element;
+        return num;
+      }
+    }
+
+    const arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const arr3 = [1, 3, 5, 7, 9];
+
+    console.log(filterTwin(arr2, isEven));
+    console.log(filterTwin(arr3, isEven));
+
+
+    // Задание 6
+    /* Используйте функцию filter из предыдущей задачи. Функция filter будет принимать массив с числами и строками. 
+    Напишите callback-функцию, которая будет проверять тип элемента. Если тип элемента string, добавляем в новый массив, 
+    иначе игнорируем элемент. Callback-функцию можно создавать стрелочным способом. */
+
+    const mixedArray = [4, "i", 67, "phone", -434, "42"];
+    const arr4 = [4, 67, -434, 0];
+
+    function isString(element) {
+      if (typeof (element) == 'string') {
+        let str = element;
+        return str;
+      }
+    }
+
+    console.log(filterTwin(mixedArray, isString));
+    console.log(filterTwin(arr4, isString));
+
+
+    // Задание 7 (аналог метода find)
+    /* Напишите функцию `find`, которая будет первым параметром принимать массив, вторым - callback-функцию, 
+    которая будет применяться к каждому элементу и индексу элемента массива по очереди. `find` должна возвращать 
+    первый найденный элемент по условиям, описанных в callback-функции, иначе - `undefined`.
+
+    Передайте в созданную функцию `find` массив строк, а в качестве callback-функции - функцию, которая будет проверять элемент 
+    на равенство строке `“apple”.` Если элемент равен строке `“apple”`, сразу возвращаем его. Если в массиве нет искомой строки, 
+    то возвращаем `undefined`. Callback-функцию можно создавать стрелочным способом. */
+
+    function findTwin(array, callback) {
+      for (let i = 0; i < array.length; i++) {
+        if (callback(array[i], i)) {
+          return array[i];
+        }
+      }
+    }
+
+    function isApple(element, index) {
+      if (element === 'apple') {
+        return true;
+      }
+    }
+
+    const arr5 = ["apricot", "banana", "kiwi", "lime", "apple", "mango"];
+    const arr6 = ["apricot", "banana", "kiwi", "lime", "42", "mango"];
+
+    console.log(findTwin(arr5, isApple));
+    console.log(findTwin(arr6, isApple));
+
+
+    // Задание 8
+    /* Используйте функцию find из предыдущей задачи. Функция find будет принимать массив числовой массив. Напишите callback-функцию,
+    которая будет искать элемент, остаток от деления на 5 которого, равен 3. Callback-функцию можно создавать стрелочным способом. */
+
+    const arr7 = [3, 8, 13, 18];
+    const arr8 = [4, 7, 9, 10];
+
+    console.log(findTwin(arr7, element => element % 5 === 3));
+    console.log(findTwin(arr8, element => element % 5 === 3));
+  </script>
+</body>
+
+</html>

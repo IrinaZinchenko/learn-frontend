@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    // Задание 1
+    /* Выведете на экран тысячу нулей */
+
+    let thousandZeros = '';
+
+    for (let i = 0; i < 1000; i++) {
+      thousandZeros += '0';
+    }
+
+    console.log(thousandZeros);
+
+
+    // Задание 2
+    /* Выведете на экран 10 раз слово "Привет". Каждое слово "Привет" должно быть на новой строке */
+
+    for (let i = 0; i < 10; i++) {
+      console.log('Привет');
+    }
+
+
+    // Задание 3
+    /* Использовав два цикла выведете на экран прямоугольник из нулей - 3 строки, 8 столбцов */
+
+    for (let i = 0; i < 3; i++) {
+      let row = '';
+
+      for (let j = 0; j < 8; j++) {
+        row += '0';
+      }
+
+      console.log(row);
+    }
+
+
+    // Задание 4
+    /* Использовав два цикла выведете на экран в одну строку 8 нолей, затем единицу, затем 8 нолей, затем единицу и так 4 раза: 000000001000000001000000001000000001 */
+
+    let str = '';
+
+    for (let i = 0; i < 4; i++) {
+
+      for (let j = 0; j < 8; j++) {
+
+        if (j === 7) {
+          str += '01';
+        } else {
+          str += '0';
+        }
+      }
+    }
+
+    console.log(str);
+
+  </script>
+</body>
+
+</html>

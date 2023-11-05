@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    // Задача 10.1
+    /* Даны два массива. Написать функцию, которая будет из первого массива удалять все значения второго, возвращая новый массив.
+    Порядок оставшихся элементов должен сохраняться. */
+
+    function arrayDiff(array1, array2) {
+      let newArray = [];
+
+      for (let i = 0; i < array1.length; i++) {
+        for (let j = 0; j < array2.length; j++) {
+          newArray = array1.filter(item => item !== array2[j]);
+        }
+      }
+
+      return newArray;
+    }
+
+    // function arrayDiff(array1, array2) {
+    // return array1.filter((item) => !array2.includes(item));
+    // }
+
+    const arr1 = arrayDiff([1, 2], [1]);
+    console.log(arr1); // [2]
+
+    const arr2 = arrayDiff([1, 2, 2, 2, 2, 3], [2]);
+    console.log(arr2); // [1, 3]
+
+    const arr3 = arrayDiff([1, 2, 2, 2, 2, 3], [1]);
+    console.log(arr3);
+
+
+    // Задача 10.2
+    /* Напишите функцию, которая сравнивает два массива, если они равны, вернуть true, иначе false. */
+
+    function isEqual(array1, array2) {
+      let str1 = array1.join();
+      let str2 = array2.join();
+
+      let result = false;
+
+      if (str1 === str2) {
+        result = true;
+      }
+
+      return result;
+    }
+
+    //   function isEqual(array1, array2) {
+    //    if (array1.length != array2.length) return false;
+    //    return array1.every((el,indx) => el === array2[indx]);
+    // }
+
+    const arr4 = [1, 2, 3, 4];
+    const arr5 = [1, 2, 3, 4];
+    console.log(isEqual(arr4, arr5)); // true
+
+    const arr6 = [1, 2, 3, 4];
+    const arr7 = [1, 2, 3, 4, 5];
+    console.log(isEqual(arr6, arr7));
+
+
+    // Задача 10.3
+    /* Напишите функцию, которая очищает массив от нежелательных значений, таких как false, undefined, пустые строки (””), ноль (0), null. */
+
+    function withoutEmpty(array) {
+      let newArray1 = array.filter(item => item != false);
+      let newArray2 = newArray1.filter(item => item !== null);
+      let newArray3 = newArray2.filter(item => item !== undefined);
+
+      return newArray3;
+    }
+
+    //   function withoutEmpty(array) {
+    // 	return array.filter((elem) => Boolean(elem));
+    // }
+
+    const arr8 = [1, false, "42", "", null, 67, undefined, -45, 0, "apple"];
+    const newArr1 = withoutEmpty(arr8);
+    console.log(newArr1); // [1, "42", 67, -45, "apple"];
+
+
+    // Задача 10.4
+    /* Напишите функцию, которая убирает повторяющиеся элементы в массиве. Постараться сохранить исходный порядок элементов в массиве. */
+
+    function unique(array) {
+      let newArray = [];
+
+      for (element of array) {
+        if (!newArray.includes(element)) {
+          newArray.push(element);
+        }
+      }
+
+      return newArray;
+    }
+
+    //   function unique(array){
+    // 	return array.filter((elem, index, arr) => arr.indexOf(elem) === index);
+    // }
+
+
+    const arr9 = [1, 2, 2, 3, 3, 4, 5, 6, 6];
+    const newArr2 = unique(arr9);
+    console.log(newArr2); // [ 1, 2, 3, 4, 5, 6 ]
+
+
+    // Задача 10.5
+    /* Написать функцию, которая будет искать массив внутри двумерного массива и возвращать индекс найденного элемента,
+    иначе возвращает `-1`. 
+    Двумерным массивом в JS является массив, элементами которого являются массивы. Например, `[[0, 0, 0], [1, 1, 1], [2, 2, 2]].` */
+
+    function indexOfArray(twoDimArray, array) {
+      newTwoDimArray = [];
+
+      for (element of twoDimArray) {
+        let str = element.join();
+        newTwoDimArray.push(str);
+      }
+
+      let query = array.join();
+
+      return newTwoDimArray.indexOf(query);
+    }
+
+
+    //   function isEqual(array1, array2) {
+    // 	if (array1.length != array2.length) return false;
+    // 	return array1.every((el,indx) => el === array2[indx]);
+    // }
+
+    // function indexOfArray(twoDimArray, query) {
+    //   return twoDimArray.findIndex((elem, index) => isEqual(elem, query))
+    // }
+
+
+    const twoDimArray1 = [[0, 0, 0], [1, 1, 1], [2, 2, 3]];
+    const query1 = [1, 1, 1];
+    const result1 = indexOfArray(twoDimArray1, query1);
+    console.log(result1); // 1
+
+    const query2 = [4, 4, 4];
+    const result2 = indexOfArray(twoDimArray1, query2);
+    console.log(result2); // -1
+
+
+    // Задача 10.6
+    /* Напишите функцию, которая разделяет массив на части заданного размера. */
+
+    function chunk(array, num) {
+      let arrayCopy = [...array];
+      let resultArray = [];
+
+
+      while (arrayCopy.length !== 0) {
+        let result = arrayCopy.filter((element, index) => index < num);
+        resultArray.push(result);
+        arrayCopy.splice(0, num);
+      }
+
+      return resultArray;
+    }
+
+    //     function chunk(arr,n){
+    //   let newArr=[];
+    //   for(i=0; i < arr.length; i += n) {
+    //     newArr.push(arr.slice(i, i + n));
+    //   }
+    //   return newArr;
+    // }
+
+    const arr10 = [1, 2, 3, 4, 5];
+    console.log(chunk(arr10, 2)); // [[1,2], [3, 4], [5]]
+    console.log(chunk(arr10, 3)); // [[1, 2, 3], [4, 5]]
+
+
+    // Задача 10.7*
+    /* Напишите функцию, которая создаст массив из уникальных значений, которые есть в каждом из предоставленных массивов.
+    Используйте примитивные типы данных. */
+
+    // function intersection(array1, array2, array3) {
+    //   let result1 = [];
+
+    //   for (item of array1) {
+    //     for (let i = 0; i < array2.length; i++) {
+    //       if (item === array2[i]) {
+    //         result1.push(item);
+    //       }
+    //     }
+    //   }
+
+    //   let result2 = [];
+
+    //   if (array3) {
+    //     for (item of array3) {
+    //       for (let i = 0; i < array2.length; i++) {
+    //         if (item === array2[i]) {
+    //           result2.push(item);
+    //         }
+    //       }
+    //     }
+    //   }
+
+    //   let result = result1.concat(result2);
+
+    //   let newArray = [];
+
+    //   for (element of result) {
+    //     if (!newArray.includes(element)) {
+    //       newArray.push(element);
+    //     }
+    //   }
+
+    //   return newArray;
+    // }
+
+    // const arr11 = [1, 2];
+    // const arr12 = [2, 3];
+    // const arr13 = ['a', 'b'];
+    // const arr14 = ['b', 'c'];
+    // const arr15 = ['b', 'e', 'c'];
+    // const arr16 = ['b', 'b', 'e'];
+    // const arr17 = ['b', 'c', 'e'];
+    // const arr18 = ['b', 'e', 'c'];
+
+    // console.log(intersection(arr11, arr12)); // [2]
+    // console.log(intersection(arr13, arr14, arr15)); // ['b']
+    // console.log(intersection(arr16, arr17, arr18)); // ['b', 'e']
+
+
+//     function intersection(...arrays) {
+//     const filteredArrays  = arrays.map((arr) => {
+//         return arr.filter((elem, index, thisArr) => thisArr.indexOf(elem) === index);
+//     })
+    
+//     const flatFilteredArrays = filteredArrays.flat();
+    
+//     const intersectionArr= flatFilteredArrays.reduce((acc, curr, index, arr) => {
+//         if (arr.filter((elem) => elem === curr).length === arrays.length && !acc.includes(curr)) {
+//             acc.push(curr);
+//             return acc
+//         } else {
+//             return acc;
+//         }
+//     }, [])
+    
+//     return intersectionArr;
+// }
+
+
+
+// function intersection(...arr){
+//   //Используем функцию unique из задания 10.4
+//   unique=(arr)=>arr.filter((el0,indx,arr)=>indx==0 || el0!=arr.slice(0,indx).find((el)=>el==el0)); 
+
+//   let newFlatArr= arr.map((el,ind,arr)=>unique(el)).flat();
+
+//   let newFlatArrUnique=unique(newFlatArr);
+
+//   let result=[];
+//   newFlatArrUnique.forEach(elUniq => {
+//     if(newFlatArr.reduce((sum,el) => elUniq == el ? ++sum : sum, 0) == arr.length){
+//       result.push(elUniq);  
+//     }
+//   });
+//   return result;
+// }
+  </script>
+</body>
+
+</html>

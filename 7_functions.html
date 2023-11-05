@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    // Задание 1
+    /* Написать функцию, получающую на вход одно число. Если число чётное - функция возвращает true , если нет - false. */
+    // console.log(isEven(42)); // true
+    // console.log(isEven(15)); // false
+    // console.log(isEven(-111)); // false
+
+    function isEven(num) {
+      let result;
+
+      if (num % 2 === 0) {
+        result = true;
+      } else {
+        result = false;
+      }
+
+      return result;
+
+      // // решение в 1 действие
+      // return num % 2 === 0;
+    }
+
+    console.log(isEven(42));
+    console.log(isEven(15));
+    console.log(isEven(-111));
+    console.log(isEven(670));
+
+
+    // Задание 2
+    /* Написать функцию, получающую на вход одно число. Она должна развращать противоположное число. */
+    // console.log(oppositeNumber(1)); // -1
+    // console.log(oppositeNumber(-42)); // 42
+    // console.log(oppositeNumber(56)); // -56
+
+    function oppositeNumber(num) {
+      return num * -1;
+    }
+
+    console.log(oppositeNumber(1));
+    console.log(oppositeNumber(-42));
+    console.log(oppositeNumber(56));
+
+
+    // Задание 3
+    /* Написать функцию, получающую на вход два числа. Если оба числа чётные - функция возвращает их произведение. 
+    Если оба числа нечётные - функция возвращает их сумму. Если одно из чисел чётное, а второе нечётное - функция возвращает это нечётное число. */
+    // console.log(operationsWithEvenOdd(2, 4)); // 8
+    // console.log(operationsWithEvenOdd(11, 31)); // 42
+    // console.log(operationsWithEvenOdd(-8, -15)); // -15
+
+    function operationsWithEvenOdd(a, b) {
+      let result;
+
+      if (a % 2 === 0 && b % 2 === 0) {
+        result = a * b;
+      } else if (a % 2 !== 0 && b % 2 !== 0) {
+        result = a + b;
+      } else {
+        if (a % 2 !== 0) {
+          result = a;
+        } else {
+          result = b;
+        }
+      }
+
+      return result;
+    }
+
+    console.log(operationsWithEvenOdd(2, 4));
+    console.log(operationsWithEvenOdd(11, 31));
+    console.log(operationsWithEvenOdd(-8, -15));
+    console.log(operationsWithEvenOdd(27, 240));
+
+
+    // Задание 4
+    /* Написать функцию, которая будет получать неотрицательное число, например 3, и возвращать строку "1 sheep...2 sheep...3 sheep...". 
+    Проверять полученное число не нужно, оно всегда неотрицательное целое. */
+    // console.log(iWantToSleep(3)); // 1 sheep...2 sheep...3 sheep...
+    // console.log(iWantToSleep(5)); // 1 sheep...2 sheep...3 sheep...4 sheep...5 sheep...
+
+    function iWantToSleep(num) {
+      let sheepCounter = '';
+      for (let i = 1; i <= num; i++) {
+        sheepCounter += `${i} sheep...`
+      }
+
+      return sheepCounter;
+    }
+
+    console.log(iWantToSleep(3));
+    console.log(iWantToSleep(5));
+    console.log(iWantToSleep(17));
+
+
+    // Задание 5
+    /* Написать функцию, принимающую массив чисел. Она должна возвращать элемент с максимальным значением. */
+    // console.log(max([1, 42, 34, 12])); // 42
+    // console.log(max([-5, -10, -100])); // -5
+
+    function max(array) {
+      let maxNum = array[0];
+
+      for (let i = 1; i < array.length; i++) {
+        if (array[i] > maxNum) {
+          maxNum = array[i];
+        }
+      }
+
+      return maxNum;
+    }
+
+    console.log(max([1, 42, 34, 12]));
+    console.log(max([-5, -10, -100]));
+    console.log(max([-5, 12, 1, -46, 35, 12, 98]));
+
+
+    // Задание 6
+    /* Написать функцию, принимающую массив чисел. Она должна возвращать элемент с минимальным значением. */
+    // console.log(min([1, 42, 34, 12])); // 42
+    // console.log(min([-5, -10, -100])); // -5
+
+    function min(array) {
+      let minNum = array[0];
+
+
+      for (let i = 1; i < array.length; i++) {
+        if (array[i] < minNum) {
+          minNum = array[i];
+        }
+      }
+
+      return minNum;
+    }
+
+    console.log(min([1, 42, 34, 12]));
+    console.log(min([-5, -10, -100]));
+
+
+    // Задание 7
+    /* Написать функцию, принимающую массив чисел. Она должна возвращать сумму всех элементов. */
+    // console.log(sum([1, 2, 3, 4])); // 10
+    // console.log(sum([-5, -10, 15])); // 0
+
+    function sum(array) {
+      let total = 0;
+
+      for (let i = 0; i < array.length; i++) {
+        total += array[i];
+      }
+
+      return total;
+    }
+
+    console.log(sum([1, 2, 3, 4]));
+    console.log(sum([-5, -10, 15]));
+    console.log(sum([20, 12, 65, 87, 90, -250]));
+
+
+    // Задание 8
+    /* Написать функцию, принимающую массив чисел. Она должна возвращать новый массив с квадратами элементов переданного массива. */
+    // const arr = [1, 2, 3, 4];
+    // const arrWithSquare = map(arr);
+    // console.log(arrWithSquare); // [1, 4, 9, 16]
+
+    // решение с push()
+    function map1(arr) {
+      let newArr = [];
+
+      for (let item of arr) {
+        square = item ** 2;
+        newArr.push(square);
+      }
+
+      return newArr;
+    }
+
+    // решение с for
+    function map2(arr) {
+      let newArr = [];
+
+      for (let i = 0; i < arr.length; i++) {
+        square = arr[i] ** 2;
+        newArr[i] = square;
+      }
+
+      return newArr;
+    }
+
+    const arr = [1, 2, 3, 4, 5];
+    const arrWithSquare1 = map1(arr);
+    const arrWithSquare2 = map2(arr);
+    console.log(arrWithSquare1);
+    console.log(arrWithSquare2);
+
+
+    // Задание 9
+    /* Написать функцию, принимающую массив отрицательных и положительных чисел. Она должна возвращать новый массив только с отрицательными числами. */
+    // const arr1 = [43, -23, -12, 5, -1, 42];
+    // const arrWithNegative = filter(arr1);
+    // console.log(arrWithNegative); // [-23, -12, -1]
+
+    // решение с for и пустыми элементами массива
+    // function filter(arr) {
+    //   let newArr = [];
+
+    //   for (let i = 0; i < arr.length; i++) {
+    //     if (arr[i] < 0) {
+    //       newArr[i] = arr[i];
+    //     }
+    //   }
+
+    //   return newArr;
+    // }
+
+    function filter(arr) {
+      let newArr = [];
+
+      for (item of arr) {
+        if (item < 0) {
+          newArr.push(item);
+        }
+      }
+
+      return newArr;
+    }
+
+    const arr1 = [-34, 43, -23, -12, 5, -1, 42, -100];
+    const arrWithNegative = filter(arr1);
+    console.log(arrWithNegative);
+
+
+    // Задание 10
+    /* Написать функцию, принимающую массив чисел. Она должна возвращать true, если в массиве хотя бы одно число делится на 5, иначе false. */
+    // const arr2 = [1, 5, 36, 37, 42];
+    // const arr3 = [9, 6, 76, 3, 32];
+    // console.log(some(arr2)); // true
+    // console.log(some(arr3)); // false
+
+    function some(arr) {
+      for (item of arr) {
+        if (item % 5 === 0) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    const arr2 = [1, 5, 36, 37, 42];
+    const arr3 = [9, 6, 76, 3, 32];
+    const arr4 = [9, 6, 76, 3, 32, 100];
+    console.log(some(arr2));
+    console.log(some(arr3));
+    console.log(some(arr4));
+
+
+    // Задание 11
+    /* Написать функцию, принимающую массив чисел. Она должна возвращать true, если в массиве все числа двузначные, иначе false. */
+    // const arr5 = [18, 95, 36, 37, 42];
+    // const arr6 = [9, 6, 76, 3, 32];
+    // console.log(every(arr)); // true
+    // console.log(every(arr2)); // false
+
+    function every(arr) {
+      for (item of arr) {
+        if (item < 10 || item > 99) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    const arr5 = [18, 95, 36, 37, 42];
+    const arr6 = [9, 6, 76, 3, 32];
+    const arr7 = [19, 26, 76, 43, 32, 100];
+    console.log(every(arr5));
+    console.log(every(arr6));
+    console.log(every(arr7));
+
+
+    // Задание 12
+    /* Написать функцию, принимающую массив чисел. Она должна возвращать новый массив, который будет зеркальным отражение переданного массива. */
+    // const arr8 = [1, 2, 3, 4, 5, 6];
+    // const reversedArr = toReversed(arr8);
+    // console.log(reversedArr); // [6, 5, 4, 3, 2, 1]
+
+    function toReversed(arr) {
+      let newArr = [];
+      for (let i = arr.length - 1; i >= 0; i--) {
+        newArr[(arr.length - 1) - i] = arr[i];
+      }
+
+      return newArr;
+    }
+
+    const arr8 = [1, 2, 3, 4, 5, 6];
+    const reversedArr = toReversed(arr8);
+    console.log(reversedArr);
+  </script>
+</body>
+
+</html>
