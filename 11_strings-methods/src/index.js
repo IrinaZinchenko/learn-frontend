@@ -27,7 +27,7 @@ btn.addEventListener("click", () => {
 
     const revText = revWords.join(" ");
 
-    result.textContent = revText;
+    result.innerHTML = `<p>Результат: ${revText}</p>`;
 
     input.value = "";
   }
@@ -163,15 +163,14 @@ const result5 = task5.querySelector('.result-5');
 button5.addEventListener("click", () => {
   const str = input5.value;
 
-  let reverseWord = '';
+  const inputWord = str.toLowerCase();
 
-  for (let i = (str.length - 1); i >= 0; i--) {
-    reverseWord += str[i];
-  }
-  // преобразовать строку в массив, применить метод массива чтобы сделать реверс массива и склеить обратно в строку
+  let arrayWord = inputWord.split('');
+
+  let reverseWord = arrayWord.reverse().join('');
 
   let isChangeling;
-  if (reverseWord === str) {
+  if (reverseWord === inputWord) {
     isChangeling = true;
   } else {
     isChangeling = false;
@@ -192,25 +191,11 @@ const result6 = task6.querySelector('.result-6');
 button6.addEventListener("click", () => {
   const str = input6.value;
 
-  // код
-  let array = str.split('');
-  // очистить через все фильтр от всех пробелов, а потом соединить обратно в строку через пробел
-  while (array[0] === ' ') {
-    array.shift();
-  }
+  const array = str.split(' ');
 
-  while (array[array.length - 1] === ' ') {
-    array.pop();
-  }
+  let onlyWords = array.filter((elem) => elem !== "");
 
-  for (let i = 1; i < array.length; i++) {
-    if (array[i] === ' ' && array[i + 1] === ' ') {
-      array.splice(i, 1);
-      i--;
-    }
-  }
-
-  let resultStr = array.join('');
+  let resultStr = onlyWords.join(' ');
 
   result6.innerHTML = `<p>Ваш ввод без лишних пробелов: ${resultStr}</p>`;
 
@@ -227,23 +212,17 @@ const result7 = task7.querySelector('.result-7');
 button7.addEventListener("click", () => {
   const str = input7.value;
 
-  let result = '';
+  let arrayOfWords = str.split(' ');
 
-  // код
-  let array = str.split(' ');
-  // можно преобразовать цикл в метод map
-  let newArray = [];
-  for (let word of array) {
-    let newStr = word.slice(0, 1).toUpperCase();
-    newStr += word.slice(1);
-    newArray.push(newStr);
-  }
+  let newArray = arrayOfWords.map((elem) => {
+    let withCapital = elem[0].toUpperCase() + elem.slice(1);
+
+    return withCapital;
+  })
 
   let resultStr = newArray.join(' ');
 
-  result = `<p>Ваш ввод: ${str}</p><p>Результат: ${resultStr}</p>`;
-
-  result7.innerHTML = result;
+  result7.innerHTML = `<p>Ваш ввод: ${str}</p><p>Результат: ${resultStr}</p>`;
 
   input7.value = '';
 });
@@ -258,9 +237,6 @@ const result8 = task8.querySelector('.result-8');
 button8.addEventListener("click", () => {
   const str = input8.value;
 
-  let result = '';
-
-  // код
   let equal = str.indexOf("=");
   let plus = str.indexOf("+");
   let minus = str.indexOf("-");
@@ -310,9 +286,7 @@ button8.addEventListener("click", () => {
       break;
   }
 
-  result = `<p>Ваш ввод: ${str}</p><p>Результат: ${bool}</p>`;
-
-  result8.innerHTML = result;
+  result8.innerHTML = `<p>Ваш ввод: ${str}</p><p>Результат: ${bool}</p>`;
 
   input8.value = '';
 });
@@ -326,8 +300,6 @@ const result9 = task9.querySelector('.result-9');
 
 button9.addEventListener("click", () => {
   const str = input9.value;
-
-  let result = '';
 
   // цикл для заполнения массива чисел
   let arrayOfNumbers = [];
@@ -377,9 +349,7 @@ button9.addEventListener("click", () => {
     }
   });
 
-  result = `<p>Ваш ввод: ${str}</p><p>Результат: ${numResult}</p>`;
-
-  result9.innerHTML = result;
+  result9.innerHTML = `<p>Ваш ввод: ${str}</p><p>Результат: ${numResult}</p>`;
 
   input9.value = '';
 });
