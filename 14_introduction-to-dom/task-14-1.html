@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <section class="methods">
+    <h2>Методы NodeList</h2>
+    <div class="methods-content">
+      <div id="item_index">
+        <h4>item (index)</h4>
+        <p>
+          Возвращает элемент из списка по его индексу или null, если индекс
+          выходит за границы допустимого диапазона. В качестве альтернативы
+          этого метода может быть использован nodeList[index], возвращающий
+          undefined при недопустимом index.
+        </p>
+      </div>
+      <div id="entries">
+        <h4>entries()</h4>
+        <p>
+          Возвращает iterator, позволяя перебрать все пары ключ/значение,
+          содержащиеся в объекте.
+        </p>
+      </div>
+      <div id="foreach">
+        <h4>forEach()</h4>
+        <p>
+          Выполняет указанную функцию один раз для каждого элемента NodeList
+        </p>
+      </div>
+      <div id="keys">
+        <h4>keys()</h4>
+        <p>
+          Возвращает iterator, позволяя перебрать все ключи каждой пары
+          ключ/значение, содержащейся в объекте.
+        </p>
+      </div>
+      <div id="values">
+        <h4>values()</h4>
+        <p>
+          Возвращает iterator, позволяя перебрать все значения каждой пары
+          ключ/значение, содержащейся в объекте.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let main = document.querySelector('.methods');
+    console.log(main);
+
+    let title = main.querySelector('h2');
+    console.log(title);
+
+    let list = main.querySelector('.methods-content');
+    console.log(list);
+
+    let firstDiv = main.querySelector('#item_index');
+    console.log(firstDiv);
+    // или
+    let firstDiv1 = list.querySelector('#item_index');
+    console.log(firstDiv1);
+    // в чем разница?
+
+    let firstDivChild = firstDiv.firstChild;
+    console.log(firstDivChild);
+    // нужно ли находить все такстовые узлы?
+
+    let firstDivTitle = firstDiv.firstElementChild;
+    console.log(firstDivTitle);
+
+    let firstDivText = firstDivTitle.nextElementSibling;
+    console.log(firstDivText);
+
+    let secondDiv = list.querySelector('#entries');
+    console.log(secondDiv);
+
+    let secondDivTitle = secondDiv.children[0];
+    console.log(secondDivTitle);
+
+    let secondDivText = secondDiv.children[secondDiv.children.length - 1];
+    console.log(secondDivText);
+
+    let thirdDiv = list.querySelector('#foreach');
+    console.log(thirdDiv);
+
+    let childrenThird = thirdDiv.children;
+    console.log(childrenThird);
+
+    for (let node of childrenThird) {
+      console.log(node);
+    }
+
+    let fourthDiv = list.querySelector('#keys');
+    console.log(fourthDiv);
+
+    let fourthDivTitle = fourthDiv.firstElementChild;
+    console.log(fourthDivTitle);
+
+    let fourthDivText = firstDiv.lastElementChild;
+    console.log(fourthDivText);
+
+    let fifthDiv = list.querySelector('#values');
+    console.log(fifthDiv);
+
+    Array.from(fifthDiv.children).forEach((elem) => console.log(elem));
+
+  </script>
+</body>
+
+</html>
