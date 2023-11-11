@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <script>
+    const body = document.querySelector('body');
+
+    // const tags = ['header', 'nav', 'section', 'article', 'aside', 'footer'];
+
+    // for (let i = 0; i <br tags.length; i++) {
+    //   body.innerHTML = `<${tags[i]}>gfh</${tags[i]}>`;
+    // }
+
+    body.innerHTML = '<header></header><nav></nav><section></section><article></article><aside></aside><footer></footer>';
+
+    body.querySelector('nav').innerHTML = '<a href="#!">Ссылка</a></br><a href="#!">Ссылка</a></br><a href="#!">Ссылка</a>';
+    body.querySelector('section').innerHTML = '<h1></h1><p></p>'
+    body.querySelector('article').innerHTML = '<h2></h2><p></p><p></p>'
+    body.querySelector('aside').innerHTML = '<p></p>'
+    body.querySelector('footer').innerHTML = '<p></p><p></p><p></p>'
+
+    body.querySelector('header').textContent = 'Здесь находится хэдер';
+
+    let sec = body.querySelector('section');
+    sec.querySelector('h1').textContent = 'Заголовок секции';
+    sec.querySelector('p').textContent = 'Текст секции';
+
+    let art = body.querySelector('article');
+    art.querySelector('h2').textContent = 'Заголовок статьи';
+    art.querySelectorAll('p')[0].textContent = 'Параграф внутри ститьи';
+    art.querySelectorAll('p')[1].textContent = 'Параграф внутри ститьи';
+
+    let aside = body.querySelector('aside');
+    aside.querySelector('p').textContent = 'Боковой блок';
+
+    for (let p of body.querySelector('footer').children) {
+      p.textContent = 'Текст внутри футера';
+    }
+  </script>
+</body>
+
+</html>
