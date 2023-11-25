@@ -15,7 +15,10 @@ function createPostTmp(post) {
         <div class="article-snippet">
           <div class="article-snippet__meta">
             <div class="article-author-img">
-            <img src="${post.author.avatarUrl}" alt="${post.author.alias}">
+            ${post.author.avatarUrl
+      ? `<img src="${post.author.avatarUrl}" alt="${post.author.alias}">`
+      : ''
+    }
             </div>
             <div class="article-author-info">
               <a href="#!" class="article-author-name"><span>${post.author.alias}</span></a>
