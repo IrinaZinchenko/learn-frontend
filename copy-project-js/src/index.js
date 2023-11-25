@@ -1760,6 +1760,7 @@ function createPostTmp(post) {
           <a href="#!">
           <svg id="counter-comments" viewBox="0 0 24 24" width="24px" class="article-icon-svg">
           <path fill="currentColor" d="M16 6a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4v2.217a.783.783 0 0 1-1.186.671L10 18H8a4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4h8Z" />
+          <title>Комментарии</title>
           </svg>
           </a>
           <span>${post.statistics.commentsCount}</span>
