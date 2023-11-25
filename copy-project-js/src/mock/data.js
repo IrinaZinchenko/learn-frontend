@@ -1667,3 +1667,5 @@ const data = {
     }
   }
 }
+
+export const articlesData = Object.values(data.articleRefs);
